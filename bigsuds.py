@@ -39,7 +39,7 @@ from suds import WebFault, TypeNotFound, MethodNotFound as _MethodNotFound
 
 import six
 
-__version__ = '1.0.6'
+__version__ = '1.0.7a1'
 
 
 # We need to monkey-patch the Client's ObjectCache due to a suds bug:
@@ -326,7 +326,7 @@ def get_wsdls(hostname, username='admin', password='admin', verify=False,
 
     wsdls = {}
     for line in result.readlines():
-        result = regex.search(line)
+        result = regex.search(line.decode("utf-8"))
         if result:
             namespace, rest = result.groups()[0].split(".", 1)
             if namespace not in wsdls:
